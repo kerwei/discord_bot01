@@ -1,0 +1,9 @@
+{
+	"webhook": [{
+		"text_channel01": "text_channel01_webhook_url",
+		"text_channel02": "text_channel02_webhook_url"
+	}],
+	"user": [
+		"send_as_username"
+	]
+}
