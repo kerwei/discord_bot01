@@ -8,3 +8,4 @@ class Card():
         self.west = west
         self.element = element
         self.color = None
+        

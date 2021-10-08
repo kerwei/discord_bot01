@@ -33,15 +33,20 @@ class Manager:
         player_input = (1, 1)
         row, col = player_input
         manager.board[row][col] = quistis
+        
         # check top
         if row != 0 and type(manager.board[row-1][col]) == Card:
-            pass
+            if quistis.north > (manager.board[row-1][col]).south:
+                # change owner
+        
         # check bottom
         if row != 2 and type(manager.board[row+1][col]) == Card:
             pass
+        
         # check right
         if col != 0 and type(manager.board[row][col-1]) == Card:
             pass
+        
         # check left
         if col != 2 and type(manager.board[row][col+1]) == Card:
             pass
