@@ -26,16 +26,16 @@ class Manager:
                     moves.append((row,col))
         return moves
 
-    def compare(self):
+    def compare(self, card):
         """After player place a card"""
         # test
         player_input = (1, 1)
         row, col = player_input
-        self.board[row][col] = quistis
+        self.board[row][col] = card
 
         # check top
         if row != 0 and type(self.board[row-1][col]) == Card:
-            if quistis.north > (self.board[row-1][col]).south:
+            if card.north > (self.board[row-1][col]).south:
                 # change owner
                 pass
         
@@ -50,6 +50,19 @@ class Manager:
         # check left
         if col != 2 and type(self.board[row][col+1]) == Card:
             pass
+
+    def update_board(self, card, position):
+        """
+        Update self.board at each turn
+        """
+        raise NotImplementedError
+
+    def process_turn(self):
+        """
+        Manages the game flow
+        """
+        raise NotImplementedError
+
 
 manager = Manager()
 
@@ -86,4 +99,15 @@ manager.board[1][0] = irvine
 manager.board[1][2] = kiros
 manager.board[2][1] = laguna
 
-manager.compare()
+manager.compare(quistis)
+
+"""
+Player 1's turn
+
+1. broadcast message to discord chat -> prompt player 1 to take action
+    (server) --> (chatroom)
+2. Player 1 response: card, board coordinate -> server endpoint
+3. server endpoint -> (main:start game object/kill game object) -> manager function to process the next action (based on card and board coordinate from (2))
+
+Discord init game -> server endpoint -> manager function to start new game (stateful)
+"""
