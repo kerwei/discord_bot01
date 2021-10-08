@@ -1,7 +1,6 @@
 from PIL import Image
 
 class Manager:
-
     def __init__(self) -> None:
         self.board = [[ 0 , 0 , 0 ], 
                       [ 0 , 0 , 0 ], 
@@ -17,13 +16,13 @@ class Manager:
     def paste_card(self, card, row, col):
         img = card.img
         position = (58+row*93, 27+col*120 , 58+(row+1)*93, 27+(col+1)*120)
-        manager.ttboard.paste(img, box=position)
+        self.ttboard.paste(img, box=position)
 
     def valid_moves(self):
         moves = []
         for row in range(3):
             for col in range(3):
-                if manager.board[row][col] == 0:
+                if self.board[row][col] == 0:
                     moves.append((row,col))
         return moves
 
@@ -32,23 +31,24 @@ class Manager:
         # test
         player_input = (1, 1)
         row, col = player_input
-        manager.board[row][col] = quistis
-        
+        self.board[row][col] = quistis
+
         # check top
-        if row != 0 and type(manager.board[row-1][col]) == Card:
-            if quistis.north > (manager.board[row-1][col]).south:
+        if row != 0 and type(self.board[row-1][col]) == Card:
+            if quistis.north > (self.board[row-1][col]).south:
                 # change owner
+                pass
         
         # check bottom
-        if row != 2 and type(manager.board[row+1][col]) == Card:
+        if row != 2 and type(self.board[row+1][col]) == Card:
             pass
         
         # check right
-        if col != 0 and type(manager.board[row][col-1]) == Card:
+        if col != 0 and type(self.board[row][col-1]) == Card:
             pass
         
         # check left
-        if col != 2 and type(manager.board[row][col+1]) == Card:
+        if col != 2 and type(self.board[row][col+1]) == Card:
             pass
 
 manager = Manager()
